@@ -73,6 +73,14 @@ cd <your-repo> && yarn
 
 ## 📜 Usage
 
+Copy the `.env.example` file as `.env`:
+
+```bash
+cp .env.example .env
+```
+
+And add your environment variables.
+
 Run the following command to start the application (app + server):
 
 ```bash
