@@ -6,13 +6,11 @@
     "moduleResolution": "node",
     "preserveConstEnums": true,
     "resolveJsonModule": true,
-    "declaration": true,
     "allowSyntheticDefaultImports": true,
-    "declarationDir": "types",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "typeRoots": ["types"],
+    "typeRoots": ["node_modules/@types"],
   },
   "ts-node": {
     "compilerOptions": {
