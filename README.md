@@ -7,54 +7,6 @@
 | This monorepo contains a sample application and server to demonstrate the PCD SDK usage for consuming a PCD with a PCD passport. |
 | -------------------------------------------------------------------------------------------------------------------------------- |
 
-## 📦 Packages
-
-<table>
-    <th>Package</th>
-    <th>Version</th>
-    <th>Downloads</th>
-    <tbody>
-        <tr>
-            <td>
-                <a href="/packages/app">
-                    @example-consumer/app
-                </a>
-            </td>
-            <td>
-                <!-- NPM version -->
-                <a href="https://npmjs.org/package/@example-consumer/app">
-                    <img src="https://img.shields.io/npm/v/@example-consumer/app.svg?style=flat-square" alt="NPM version" />
-                </a>
-            </td>
-            <td>
-                <!-- Downloads -->
-                <a href="https://npmjs.org/package/@example-consumer/app">
-                    <img src="https://img.shields.io/npm/dm/@example-consumer/app.svg?style=flat-square" alt="Downloads" />
-                </a>
-            </td>
-        </tr>
-                <tr>
-            <td>
-                <a href="/packages/app">
-                    @example-consumer/server
-                </a>
-            </td>
-            <td>
-                <!-- NPM version -->
-                <a href="https://npmjs.org/package/@example-consumer/server">
-                    <img src="https://img.shields.io/npm/v/@example-consumer/server.svg?style=flat-square" alt="NPM version" />
-                </a>
-            </td>
-            <td>
-                <!-- Downloads -->
-                <a href="https://npmjs.org/package/@example-consumer/server">
-                    <img src="https://img.shields.io/npm/dm/@example-consumer/server.svg?style=flat-square" alt="Downloads" />
-                </a>
-            </td>
-        </tr>
-    <tbody>
-</table>
-
 ## 🛠 Install
 
 Use this repository as a Github [template](https://github.com/proofcarryingdata/example-consumer/generate).
@@ -81,7 +33,13 @@ cp .env.example .env
 
 And add your environment variables.
 
-Run the following command to start the application (app + server):
+Run the following command to build (client + server):
+
+```sh
+yarn build
+```
+
+Run the following command to start the application (client + server):
 
 ```bash
 yarn start

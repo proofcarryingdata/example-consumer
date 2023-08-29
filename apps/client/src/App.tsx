@@ -18,7 +18,7 @@ export default function App() {
                 const { pcd: serializedPCD } = JSON.parse(passportPCDString)
 
                 const pcd = await EdDSAPCDPackage.deserialize(serializedPCD)
-                console.log(pcd)
+
                 if (await EdDSAPCDPackage.verify(pcd)) {
                     const color = pcd.claim.message[0].toString(16)
 
