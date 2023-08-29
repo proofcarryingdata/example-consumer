@@ -4,8 +4,56 @@
     </h1>
 </p>
 
-| This repository contains a sample application demonstrating how to utilize the PCD SDK to consume a PCD with a PCD passport. |
-| ---------------------------------------------------------------------------------------------------------------------------- |
+| This monorepo contains a sample application and server to demonstrate the PCD SDK usage for consuming a PCD with a PCD passport. |
+| -------------------------------------------------------------------------------------------------------------------------------- |
+
+## 📦 Packages
+
+<table>
+    <th>Package</th>
+    <th>Version</th>
+    <th>Downloads</th>
+    <tbody>
+        <tr>
+            <td>
+                <a href="/packages/app">
+                    @example-consumer/app
+                </a>
+            </td>
+            <td>
+                <!-- NPM version -->
+                <a href="https://npmjs.org/package/@example-consumer/app">
+                    <img src="https://img.shields.io/npm/v/@example-consumer/app.svg?style=flat-square" alt="NPM version" />
+                </a>
+            </td>
+            <td>
+                <!-- Downloads -->
+                <a href="https://npmjs.org/package/@example-consumer/app">
+                    <img src="https://img.shields.io/npm/dm/@example-consumer/app.svg?style=flat-square" alt="Downloads" />
+                </a>
+            </td>
+        </tr>
+                <tr>
+            <td>
+                <a href="/packages/app">
+                    @example-consumer/server
+                </a>
+            </td>
+            <td>
+                <!-- NPM version -->
+                <a href="https://npmjs.org/package/@example-consumer/server">
+                    <img src="https://img.shields.io/npm/v/@example-consumer/server.svg?style=flat-square" alt="NPM version" />
+                </a>
+            </td>
+            <td>
+                <!-- Downloads -->
+                <a href="https://npmjs.org/package/@example-consumer/server">
+                    <img src="https://img.shields.io/npm/dm/@example-consumer/server.svg?style=flat-square" alt="Downloads" />
+                </a>
+            </td>
+        </tr>
+    <tbody>
+</table>
 
 ## 🛠 Install
 
@@ -25,17 +73,7 @@ cd <your-repo> && yarn
 
 ## 📜 Usage
 
-Copy the `.env.example` file as `.env`:
-
-```bash
-cp .env.example .env
-```
-
-and add your environment variables or run the app in a local network.
-
-### Local server
-
-You can start your app locally with:
+Run the following command to start the application (app + server):
 
 ```bash
 yarn start
