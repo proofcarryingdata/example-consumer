@@ -4,8 +4,8 @@
     </h1>
 </p>
 
-| This repository contains a sample application demonstrating how to utilize the PCD SDK to consume a PCD with a PCD passport. |
-| ---------------------------------------------------------------------------------------------------------------------------- |
+| This monorepo contains a sample application and server to demonstrate the PCD SDK usage for consuming a PCD with a PCD passport. |
+| -------------------------------------------------------------------------------------------------------------------------------- |
 
 ## 🛠 Install
 
@@ -31,11 +31,15 @@ Copy the `.env.example` file as `.env`:
 cp .env.example .env
 ```
 
-and add your environment variables or run the app in a local network.
+And add your environment variables.
 
-### Local server
+Run the following command to build (client + server):
 
-You can start your app locally with:
+```sh
+yarn build
+```
+
+Run the following command to start the application (client + server):
 
 ```bash
 yarn start
