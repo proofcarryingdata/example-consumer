@@ -1,6 +1,6 @@
 <p align="center">
     <h1 align="center">
-        PCD Consumer App
+        PCD Consumer Client
     </h1>
 </p>
 

@@ -1,7 +1,13 @@
 # dependencies
-/node_modules
-/.pnp
+node_modules
+.pnp
 .pnp.js
+
+# parcel
+.parcel-cache
+
+# production
+dist
 
 # misc
 .DS_Store

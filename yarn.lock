@@ -2653,31 +2653,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"app@workspace:packages/app":
-  version: 0.0.0-use.local
-  resolution: "app@workspace:packages/app"
-  dependencies:
-    "@pcd/eddsa-pcd": ^0.1.1
-    "@pcd/passport-interface": ^0.6.2
-    "@pcd/pcd-types": ^0.6.2
-    "@types/react": ^18.2.21
-    "@types/react-dom": ^18.2.7
-    assert: ^2.0.0
-    browserify-zlib: ^0.2.0
-    buffer: ^5.5.0||^6.0.0
-    crypto-browserify: ^3.12.0
-    events: ^3.1.0
-    os-browserify: ^0.3.0
-    parcel: ^2.9.3
-    path-browserify: ^1.0.0
-    process: ^0.11.10
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    react-router-dom: ^6.15.0
-    stream-browserify: ^3.0.0
-  languageName: unknown
-  linkType: soft
-
 "aproba@npm:^1.0.3 || ^2.0.0":
   version: 2.0.0
   resolution: "aproba@npm:2.0.0"
@@ -3270,6 +3245,31 @@ __metadata:
   checksum: 2ac8cd2b2f5ec986a3c743935ec85b07bc174d5421a5efc8017e1f146a1cf5f781ae962618f416352103b32c9cd7e203276e8c28241bbe946160cab16149fb68
   languageName: node
   linkType: hard
+
+"client@workspace:apps/client":
+  version: 0.0.0-use.local
+  resolution: "client@workspace:apps/client"
+  dependencies:
+    "@pcd/eddsa-pcd": ^0.1.1
+    "@pcd/passport-interface": ^0.6.2
+    "@pcd/pcd-types": ^0.6.2
+    "@types/react": ^18.2.21
+    "@types/react-dom": ^18.2.7
+    assert: ^2.0.0
+    browserify-zlib: ^0.2.0
+    buffer: ^5.5.0||^6.0.0
+    crypto-browserify: ^3.12.0
+    events: ^3.1.0
+    os-browserify: ^0.3.0
+    parcel: ^2.9.3
+    path-browserify: ^1.0.0
+    process: ^0.11.10
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    react-router-dom: ^6.15.0
+    stream-browserify: ^3.0.0
+  languageName: unknown
+  linkType: soft
 
 "clone@npm:^2.1.1":
   version: 2.1.2
@@ -6086,9 +6086,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"server@workspace:packages/server":
+"server@workspace:apps/server":
   version: 0.0.0-use.local
-  resolution: "server@workspace:packages/server"
+  resolution: "server@workspace:apps/server"
   dependencies:
     "@types/dotenv": ^8.2.0
     "@types/express": ^4.17.17

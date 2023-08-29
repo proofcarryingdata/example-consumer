@@ -7,6 +7,6 @@
         "start": "yarn workspaces foreach -pi run start"
     },
     "workspaces": [
-        "packages/*"
+        "apps/*"
     ]
 }
