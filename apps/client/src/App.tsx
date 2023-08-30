@@ -74,7 +74,7 @@ export default function App() {
 
     const getEdDSAPCD = useCallback(() => {
         const url = getWithoutProvingUrl(
-            String(process.env.PCDPASS_URL),
+            process.env.PCDPASS_URL as string,
             window.location.origin + "/popup",
             EdDSAPCDPackage.name
         )
