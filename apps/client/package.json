@@ -1,6 +1,7 @@
 {
     "name": "client",
     "version": "0.1.0",
+    "private": true,
     "source": "src/index.html",
     "scripts": {
         "start": "parcel --cache-dir .parcel-cache/ --no-cache --open",
