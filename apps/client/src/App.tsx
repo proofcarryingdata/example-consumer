@@ -1,6 +1,6 @@
 import { EdDSAPCDPackage } from "@pcd/eddsa-pcd"
 import { getWithoutProvingUrl, openPassportPopup, usePassportPopupMessages } from "@pcd/passport-interface"
-import { useCallback, useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 /**
  * This page allows users to get an EdDSA PCD containing a color as a message signed by
@@ -9,6 +9,7 @@ import { useCallback, useEffect } from "react"
  */
 export default function App() {
     const [passportPCDString] = usePassportPopupMessages()
+    const [bgColor, setBgColor] = useState<string>()
 
     // Get the latest color stored in the server.
     useEffect(() => {
@@ -56,9 +57,12 @@ export default function App() {
                     return
                 }
 
-                alert(`The signature is valid, the background color will be changed`)
-
                 const { color } = await response.json()
+
+                if (bgColor === color) {
+                    alert("The color is the same as the current one")
+                    return
+                }
 
                 setBgColor(color)
             }
@@ -66,11 +70,11 @@ export default function App() {
     }, [passportPCDString])
 
     // Update the background color.
-    const setBgColor = useCallback((color: string) => {
+    useEffect(() => {
         const appElement = document.getElementById("app")!
 
-        appElement.style.backgroundColor = color
-    }, [])
+        appElement.style.backgroundColor = bgColor
+    }, [bgColor])
 
     // Get the EdDSA PCD with the color signed by the issuer.
     const getEdDSAPCD = useCallback(() => {
