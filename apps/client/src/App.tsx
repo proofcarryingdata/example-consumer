@@ -1,75 +1,78 @@
-import { deserialize, EdDSAPCDPackage, init as initEdDSAPCD, verify } from "@pcd/eddsa-pcd"
+import { EdDSAPCDPackage } from "@pcd/eddsa-pcd"
 import { getWithoutProvingUrl, openPassportPopup, usePassportPopupMessages } from "@pcd/passport-interface"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect } from "react"
 
 /**
- * This component consumes a message signed with an EdDSA key. If you have provided a valid signature,
- * it uses the color as the background of the web app page. This background is preserved as long as
- * you do not consume a signature on a different colour.
+ * This page allows users to get an EdDSA PCD containing a color as a message signed by
+ * the issuer. If the signature is valid the color is stored in the server and the background color
+ * of this page will be changed.
  */
 export default function App() {
     const [passportPCDString] = usePassportPopupMessages()
-    const [bgColor, setBgColor] = useState<string>()
 
+    // Get the latest color stored in the server.
     useEffect(() => {
-        // Get the color extracted from the latest valid message signed with an EdDSA key.
-        const getLatestConsumedColor = async () => {
-            const response = await fetch(`http://localhost:${process.env.SERVER_PORT}/color/get`, {
+        ;(async () => {
+            const response = await fetch(`http://localhost:${process.env.SERVER_PORT}/color`, {
                 method: "GET",
                 mode: "cors"
             })
 
-            if (!!response.ok) {
-                const body = await response.json()
-                setBgColor(body.color)
+            if (response.status === 404) {
+                return
             }
-        }
 
-        getLatestConsumedColor()
+            if (!response.ok) {
+                alert("Some error occurred")
+                return
+            }
+
+            const { color } = await response.json()
+
+            setBgColor(color)
+        })()
     }, [])
 
-    useEffect(() => {
-        // Update the background color accordingly to color change.
-        const appElement = document.getElementById("app")!
-
-        appElement.style.backgroundColor = `#${bgColor}`
-    }, [bgColor])
-
+    // Store the color in the server if its PCD is valid
+    // and then updates the background color of this page.
     useEffect(() => {
         ;(async () => {
-            await initEdDSAPCD()
-
             if (passportPCDString) {
-                const { pcd: serializedPCD } = JSON.parse(passportPCDString)
+                const { pcd } = JSON.parse(passportPCDString)
 
-                const pcd = await deserialize(serializedPCD)
-
-                if (await verify(pcd)) {
-                    // Get PCD claim (color).
-                    const color = pcd.claim.message[0].toString(16)
-
-                    // Store consumed color on the server.
-                    await fetch(`http://localhost:${process.env.SERVER_PORT}/color/set`, {
-                        method: "POST",
-                        mode: "cors",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            color: color
-                        })
+                const response = await fetch(`http://localhost:${process.env.SERVER_PORT}/color`, {
+                    method: "POST",
+                    mode: "cors",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        pcd
                     })
+                })
 
-                    alert(`The signature is valid, #${color} will be used as a background color!`)
-
-                    setBgColor(color)
-                } else {
-                    alert(`The signature is not valid!`)
+                if (!response.ok) {
+                    alert("Some error occurred")
+                    return
                 }
+
+                alert(`The signature is valid, the background color will be changed`)
+
+                const { color } = await response.json()
+
+                setBgColor(color)
             }
         })()
     }, [passportPCDString])
 
+    // Update the background color.
+    const setBgColor = useCallback((color: string) => {
+        const appElement = document.getElementById("app")!
+
+        appElement.style.backgroundColor = color
+    }, [])
+
+    // Get the EdDSA PCD with the color signed by the issuer.
     const getEdDSAPCD = useCallback(() => {
         const url = getWithoutProvingUrl(
             process.env.PCDPASS_URL as string,
@@ -80,5 +83,5 @@ export default function App() {
         openPassportPopup("/popup", url)
     }, [])
 
-    return <button onClick={getEdDSAPCD}>Get PCD signature</button>
+    return <button onClick={getEdDSAPCD}>Get a PCD signature with your color</button>
 }
